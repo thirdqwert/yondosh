@@ -16,8 +16,8 @@ COPY . .
 
 EXPOSE 8000
 # продакшн
-CMD ["/app/entrypoint.sh"]
-# CMD /bin/bash -c "python manage.py migrate && python manage.py collectstatic --noinput && gunicorn yondosh_core.wsgi:application --bind 0.0.0.0:10000"
+# CMD ["/app/entrypoint.sh"]
+CMD /bin/bash -c "python manage.py migrate && python manage.py collectstatic --noinput && gunicorn yondosh_core.wsgi:application --bind 0.0.0.0:10000"
 # разработка
 # CMD python manage.py migrate && python manage.py runserver 0.0.0.0:8000
 
