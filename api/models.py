@@ -70,7 +70,8 @@ class UserProfile(models.Model):
     telegram_key = models.IntegerField(blank=True, unique=True, null=True, verbose_name='Ключ для связи телеграм')
 
 
-class TelegramDeviсe(models.Model):
+
+class TelegramDevice(models.Model):
     profile = models.OneToOneField(UserProfile, on_delete=models.CASCADE, related_name='telegram_device', verbose_name='Профиль девайса')
     telegramId = models.BigIntegerField(unique=True, verbose_name='телеграм ID пользователя')
 
