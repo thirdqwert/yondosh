@@ -2,6 +2,14 @@ from django.urls import path, re_path
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
+from drf_yasg.generators import OpenAPISchemaGenerator
+
+
+class HttpsSchemaGenerator(OpenAPISchemaGenerator):
+    def get_schema(self, request=None, public=False):
+        schema = super().get_schema(request=request, public=public)
+        schema.schemes = ["https"]  # принудительно HTTPS
+        return schema
 
 # Настраиваем Swagger документацию
 schema_view = get_schema_view(
@@ -30,3 +38,6 @@ urlpatterns = [
         name='schema-swagger-ui'
     ),
 ]
+
+
+

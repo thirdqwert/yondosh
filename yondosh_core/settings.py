@@ -20,9 +20,7 @@ DEBUG = os.getenv("DEBUG") == "TRUE"
 
 ALLOWED_HOSTS = ['yondosh-django.onrender.com', '127.0.0.1', ]
 
-CSRF_TRUSTED_ORIGINS = [
-    'https://yondosh-django.onrender.com'
-]
+
 
 # Application definition
 
@@ -55,7 +53,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-CORS_ALLOW_ALL_ORIGINS = True
 
 ROOT_URLCONF = 'yondosh_core.urls'
 
@@ -144,13 +141,16 @@ SIMPLE_JWT = {
 }
 
 SWAGGER_SETTINGS = {
+    # принудитльно делаю запросы с https
+    # 'DEFAULT_GENERATOR_CLASS': 'api.swagger_settings.HttpsSchemaGenerator',
     'SECURITY_DEFINITIONS': {
         'Bearer': {  # Определяем схему авторизации "Bearer"
             'type': 'apiKey',       # Тип авторизации — API ключ
             'name': 'Authorization',  # Название заголовка, через который передаётся токен
             'in': 'header'            # Указываем, что токен будет передаваться в заголовках запроса
         }
-    }
+    },
+    'SCHEMES': ['https']
 }
 
 CELERY_BROKER_URL = os.getenv('REDIS_URL')
@@ -166,3 +166,18 @@ CELERY_BEAT_SCHEDULE = {
         'schedule': 60,
     },
 }
+# что бы csrf работал
+CSRF_TRUSTED_ORIGINS = [
+    'https://yondosh-django.onrender.com'
+]
+
+# Прокси, чтобы HTTPS работал
+USE_X_FORWARDED_HOST = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# Cookies и CSRF
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+
+# CORS (если нужно) (использровал что бы виксить баг в swagger)
+CORS_ALLOW_ALL_ORIGINS = True
