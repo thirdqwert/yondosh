@@ -133,7 +133,7 @@ class SpendingAPIView(generics.ListCreateAPIView):
 
 class TargetListCreateAPIView(generics.ListCreateAPIView):
     serializer_class = TargetMoneySerializer
-    
+    permission_classes = [permissions.IsAuthenticated]
     def get_queryset(self):
         return TargetMoney.objects.filter(user=self.request.user)
     
@@ -143,7 +143,7 @@ class TargetListCreateAPIView(generics.ListCreateAPIView):
 
 class TargetUpdateAPIView(generics.UpdateAPIView):
     serializer_class = TargetMoneySerializer
-    
+    permission_classes = [permissions.IsAuthenticated]
     def get_queryset(self):
         return TargetMoney.objects.filter(user=self.request.user)
     

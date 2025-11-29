@@ -18,7 +18,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG") == "TRUE"
 
-ALLOWED_HOSTS = ['yondosh-django.onrender.com', 'https://yondosh-django.onrender.com', '127.0.0.1']
+ALLOWED_HOSTS = ['yondosh-django.onrender.com', '127.0.0.1', ]
 
 CSRF_TRUSTED_ORIGINS = [
     'https://yondosh-django.onrender.com'
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
     'drf_yasg',
+    'corsheaders'
     'redis',
     'api.apps.ApiConfig',
     'celery',
@@ -44,6 +45,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -52,6 +54,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+CORS_ALLOW_ALL_ORIGINS = True
 
 ROOT_URLCONF = 'yondosh_core.urls'
 
