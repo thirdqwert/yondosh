@@ -1,8 +1,9 @@
 from django.urls import path
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+from .swagger_settings import urlpatterns as url_swagger
 from . import views
 
-urlpatterns = [
+paths = [
     # польхователь
     path('register/', views.RegisterAPIView.as_view(), name='register'),
     path('login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
@@ -27,3 +28,5 @@ urlpatterns = [
     path('finances/targets/', views.TargetMoneyMix.as_view(), name='targets'),
     path('finances/targets/<int:pk>/', views.TargetMoneyMix.as_view(), name='targets_detail'),
 ]
+
+urlpatterns = paths + url_swagger

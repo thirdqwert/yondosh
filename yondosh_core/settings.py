@@ -36,6 +36,7 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'rest_framework_simplejwt',
+    'drf_yasg',
     'redis',
     'api.apps.ApiConfig',
     'celery',
@@ -127,21 +128,21 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
     
 
-# REST_FRAMEWORK = {
-#     'DEFAULT_AUTHENTICATION_CLASSES': (
-#         'rest_framework_simplejwt.authentication.JWTAuthentication',
-#     )
-# }
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+}
 
-# SWAGGER_SETTINGS = {
-#     'SECURITY_DEFINITIONS': {
-#         'Bearer': {  # Определяем схему авторизации "Bearer"
-#             'type': 'apiKey',       # Тип авторизации — API ключ
-#             'name': 'Authorization',  # Название заголовка, через который передаётся токен
-#             'in': 'header'            # Указываем, что токен будет передаваться в заголовках запроса
-#         }
-#     }
-# }
+SWAGGER_SETTINGS = {
+    'SECURITY_DEFINITIONS': {
+        'Bearer': {  # Определяем схему авторизации "Bearer"
+            'type': 'apiKey',       # Тип авторизации — API ключ
+            'name': 'Authorization',  # Название заголовка, через который передаётся токен
+            'in': 'header'            # Указываем, что токен будет передаваться в заголовках запроса
+        }
+    }
+}
 
 CELERY_BROKER_URL = os.getenv('REDIS_URL')
 CELERY_RESULT_BACKEND = os.getenv('REDIS_URL')
