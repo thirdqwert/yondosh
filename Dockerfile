@@ -16,7 +16,7 @@ COPY . .
 
 EXPOSE 8000
 # продакшн
-CMD /bin/bash -c "python manage.py migrate && gunicorn myapp.wsgi:application --bind 0.0.0.0:10000"
+CMD /bin/bash -c "python manage.py migrate && gunicorn yondosh.wsgi:application --bind 0.0.0.0:10000"
 # разработка
 # CMD python manage.py migrate && python manage.py runserver 0.0.0.0:8000
 
