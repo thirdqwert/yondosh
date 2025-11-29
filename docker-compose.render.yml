@@ -11,6 +11,8 @@ services:
       REDIS_URL: ${REDIS_URL}
       SECRET_KEY: ${SECRET_KEY}
       DEBUG: ${DEBUG}
+      BOT_TOKEN: ${BOT_TOKEN}
+      SSL: ${SSL}
 
   celery:
     build: .
@@ -20,6 +22,8 @@ services:
       REDIS_URL: ${REDIS_URL}
       SECRET_KEY: ${SECRET_KEY}
       DEBUG: ${DEBUG}
+      BOT_TOKEN: ${BOT_TOKEN}
+      SSL: ${SSL}
 
   celery-beat:
     build: .
@@ -29,3 +33,5 @@ services:
       REDIS_URL: ${REDIS_URL}
       SECRET_KEY: ${SECRET_KEY}
       DEBUG: ${DEBUG}
+      BOT_TOKEN: ${BOT_TOKEN}
+      SSL: ${SSL}
