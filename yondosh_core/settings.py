@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'drf_yasg',
     'corsheaders',
     'redis',
+    'gunicorn',
     'api.apps.ApiConfig',
     'celery',
     'django_celery_beat',
