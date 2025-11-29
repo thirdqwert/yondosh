@@ -18,7 +18,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG") == "TRUE"
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['yondosh-django.onrender.com']
 
 
 # Application definition
