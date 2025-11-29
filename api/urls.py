@@ -4,13 +4,13 @@ from .swagger_settings import urlpatterns as url_swagger
 from . import views
 
 paths = [
-    # польхователь
+    # пользователь
     path('register/', views.RegisterAPIView.as_view(), name='register'),
     path('login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('profile/', views.UserProfileAPIView.as_view(), name='user_profile'),
     # подключение
-    # path('connect/telegram/', views.TelegramConnAPIView.as_view(), name='telegram_connect'),
+    path('connect/telegram/', views.TelegramConnAPIView.as_view(), name='telegram_connect'),
     # привычки
     path('habits/', views.HabitListCreateAPIView.as_view(), name='habits'),
     path('habits/<int:pk>/', views.HabitRetrieveDestroyAPIView.as_view(), name='habit_detail'),

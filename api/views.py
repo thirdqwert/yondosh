@@ -62,8 +62,10 @@ class HabitRetrieveDestroyAPIView(generics.RetrieveDestroyAPIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
+        if getattr(self, 'swagger_fake_view', False):
+            return Habit.objects.none()
         return Habit.objects.filter(habitUser=self.request.user)
-
+    
 class HabitLogListCreate(generics.ListCreateAPIView):
     serializer_class = HabitLogSerializer
     permission_classes = [permissions.IsAuthenticated]
@@ -91,6 +93,9 @@ class TaskRetrieveDestroyAPIView(generics.RetrieveDestroyAPIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
+        # нужно что бы swagger не выдовал ошибку
+        if getattr(self, 'swagger_fake_view', False):
+            return Task.objects.none()
         return Task.objects.filter(taskUser=self.request.user)
 
 
@@ -145,6 +150,9 @@ class TargetUpdateAPIView(generics.UpdateAPIView):
     serializer_class = TargetMoneySerializer
     permission_classes = [permissions.IsAuthenticated]
     def get_queryset(self):
+        # нужно что бы swagger не выдовал ошибку
+        if getattr(self, 'swagger_fake_view', False):
+            return TargetMoney.objects.none()
         return TargetMoney.objects.filter(user=self.request.user)
     
     def perform_create(self, serializer):

@@ -1,4 +1,3 @@
-from rest_framework.permissions import BasePermission
 def generate_unique_code(UserProfile):
         import random
         while True:
@@ -6,4 +5,3 @@ def generate_unique_code(UserProfile):
             if not UserProfile.objects.filter(telegram_key=code).exists():
                 return code
             
-
