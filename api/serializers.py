@@ -70,7 +70,6 @@ class TelegramDeviceSerializer(serializers.ModelSerializer):
         return super().validate(data)
     
     def create(self, validated_data):
-        print(2)
         user_profile = UserProfile.objects.get(telegram_key=validated_data['key'])
         telegram_id = validated_data['telegramId']
         telegram_device = TelegramDevice.objects.create(profile=user_profile, telegramId=telegram_id)

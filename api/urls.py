@@ -10,7 +10,7 @@ paths = [
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('profile/', views.UserProfileAPIView.as_view(), name='user_profile'),
     # подключение
-    path('connect/telegram/', views.TelegramConnAPIView.as_view(), name='telegram_connect'),
+    # path('connect/telegram/', views.TelegramConnAPIView.as_view(), name='telegram_connect'),
     # привычки
     path('habits/', views.HabitListCreateAPIView.as_view(), name='habits'),
     path('habits/<int:pk>/', views.HabitRetrieveDestroyAPIView.as_view(), name='habit_detail'),
