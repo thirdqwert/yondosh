@@ -3,5 +3,5 @@
 __pycache__/
 db.sqlite3
 docker-compose.yml
-docker-compose.render.yml
+docker-compose-render.yml
 entrypoint.sh
