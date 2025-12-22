@@ -114,7 +114,7 @@ class NewsRetrieveDestroyAPIView(generics.RetrieveDestroyAPIView):
     permission_classes = [permissions.IsAuthenticated]
 
 
-class NoteAPIView(generics.ListCreateAPIView):
+class NoteListCreateAPIView(generics.ListCreateAPIView):
     serializer_class = NoteSerializer
     permission_classes = [permissions.IsAuthenticated]
 
@@ -123,9 +123,17 @@ class NoteAPIView(generics.ListCreateAPIView):
     
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
-    
 
-class SpendingAPIView(generics.ListCreateAPIView):
+
+class NoteDestroyAPIView(generics.DestroyAPIView):
+    serializer_class = NoteSerializer
+    permission_classes = [permissions.IsAuthenticated]
+    
+    def get_queryset(self):
+        return Note.objects.filter(user=self.request.user)
+
+
+class SpendingListCreateAPIView(generics.ListCreateAPIView):
     serializer_class = SpendingSerializer
     permission_classes = [permissions.IsAuthenticated]
 

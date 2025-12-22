@@ -22,9 +22,10 @@ paths = [
     path('news/', views.NewsListCreateAPIView.as_view(), name='news'),
     path('news/<int:pk>/', views.NewsRetrieveDestroyAPIView.as_view(), name='news_detail'),
     # заметки
-    path('notes/', views.NoteAPIView.as_view(), name='notes'),
+    path('notes/', views.NoteListCreateAPIView.as_view(), name='notes'),
+    path('notes/<int:pk>', views.NoteDestroyAPIView.as_view(), name='notes-delete'),
     # финансы
-    path('finances/spendings/', views.SpendingAPIView.as_view(), name='spendings'),
+    path('finances/spendings/', views.SpendingListCreateAPIView.as_view(), name='spendings'),
     path('finances/targets/', views.TargetListCreateAPIView.as_view(), name='targets'),
     path('finances/targets/<int:pk>/', views.TargetUpdateAPIView.as_view(), name='targets_detail'),
 ]
